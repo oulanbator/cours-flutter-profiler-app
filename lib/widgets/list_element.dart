@@ -14,14 +14,21 @@ class ListElement extends StatelessWidget {
       title: Text(character.name),
       subtitle: Text(character.species),
 
-      // Implémentation avec la DetailPage
-      // onTap: () => Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => DetailsPage(character: character))),
+      trailing: IconButton(
+        icon: const Icon(Icons.info_outline),
+        // Click icône trailing : Infos avec la Dialog
+        onPressed: () => showDialog(
+          context: context,
+          builder: (BuildContext context) =>
+              DetailsDialog(character: character),
+        ),
+      ),
 
-      // Implémentation avec la Dialog
-      onTap: () => showDialog(
-        context: context,
-        builder: (BuildContext context) => DetailsDialog(character: character),
+      // Click tuile : Infos avec la DetailPage
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => DetailsPage(character: character),
+        ),
       ),
     );
   }
